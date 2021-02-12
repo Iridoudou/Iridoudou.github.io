@@ -10,9 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="Report - AVA窦铱明 2021/1/24
+    <meta name="description" content="关于“泊松亮斑”问题的一些讨论519021910366 窦铱明
 
-1、概要​        这篇文章介绍了AVA（Atomic Visual Actions ）数据集的诞生过程，它是一个关注在视频中人物的基础动,"> 
+一、问题引入​        笔者决定对这一现象做进一步的探讨。询问有过物理竞赛经历的大佬后得知，这一问题的探讨较为复杂，且涉及到一,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Dou Yiming&#39;s Blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -93,20 +93,20 @@
                 
                 February 12, 2021
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2021/02/12/Report%20-%20AVA/" title="Untitled" class="">Untitled</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2021/02/12/%E5%85%B3%E4%BA%8E%E2%80%9C%E6%B3%8A%E6%9D%BE%E4%BA%AE%E6%96%91%E2%80%9D%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A8%E8%AE%BA/" title="Untitled" class="">Untitled</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    4.2k
+                    3.2k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    4 mins.
+                    3 mins.
                 </span>
                 
                 
@@ -138,31 +138,32 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h1 id="Report-AVA"><a href="#Report-AVA" class="headerlink" title="Report - AVA"></a><center>Report - AVA</center></h1><center>窦铱明 2021/1/24</center>
+            <h1 id="关于“泊松亮斑”问题的一些讨论"><a href="#关于“泊松亮斑”问题的一些讨论" class="headerlink" title="关于“泊松亮斑”问题的一些讨论"></a>关于“泊松亮斑”问题的一些讨论</h1><center>519021910366 窦铱明</center>
 
-<h2 id="1、概要"><a href="#1、概要" class="headerlink" title="1、概要"></a>1、概要</h2><p>​        这篇文章介绍了AVA（Atomic Visual Actions ）数据集的诞生过程，它是一个关注在视频中人物的基础动作的数据集，主要具备以下特征：① 关注细化的基础动作而非复杂的复合动作；② 对每一任务都有时空标注；③ 穷尽了15min内人物的所有动作；④ 从电影中获得丰富的动作集合。</p>
-<h2 id="2、引言"><a href="#2、引言" class="headerlink" title="2、引言"></a>2、引言</h2><p>​        将视频以1Hz采样后对于每一帧的动作分为了姿态、与物体交互、与人交互三种类别。同时以关键帧为中心±1.5s的部分提供了上下文信息（比如开门和关门动作在静态时看起来一样，但如果加入上下文信息就可以区分）。</p>
-<h3 id="2-1-“原子级”动作"><a href="#2-1-“原子级”动作" class="headerlink" title="2.1 “原子级”动作"></a>2.1 “原子级”动作</h3><p>​        通过两个美国人在观察自己生活的小镇后的研究得知，人体的动作行为是分级的（从最上级的intention到最末端的movement）因此我们很难定义verb的分类表。不过如果我们将考察范围缩小到一定的时间范围，那么动作就变得相对容易考察，于是采用了引言中的采样方式。</p>
-<h3 id="2-2-为什么要选择电影来获取数据"><a href="#2-2-为什么要选择电影来获取数据" class="headerlink" title="2.2 为什么要选择电影来获取数据"></a>2.2 为什么要选择电影来获取数据</h3><p>​        本质上，我们希望获取到的人类行为数据是最真实的（”in the wild”），但我们并没有这种能力来获得大量的真实数据。由顶级演员表演的电影在一定程度上代表了日程生活中人类的丰富行为。</p>
-<h3 id="2-3-穷尽所有动作的标注带来的后果"><a href="#2-3-穷尽所有动作的标注带来的后果" class="headerlink" title="2.3 穷尽所有动作的标注带来的后果"></a>2.3 穷尽所有动作的标注带来的后果</h3><p>​        人类的动作发生的频率是有很大差异的，比如“站立”动作时常发生而“亲吻”动作显然较少发生，因此在标注数据集时如果不加筛选地标注所有action会产生类似80-20法则的“长尾效应”，即大量的数据集标签集中在少部分的action，而少部分的数据却被标注为许多不同的action，造成了数据集的不平均分布。（这个现象在前几天筛选不同action出现数量的时候我深有体会）</p>
-<p>​        但是这并不意味着标注出了问题，事实上“长尾”数据是我们建立数据集时的关键，它们代表了大量的、难以分辨的动作。</p>
-<p>​        同时，集中了大量数据的少部分常见action事实上也有着特殊作用。比如电影情节中，“开门”是时常发生的动作，因此被大量标注。而如果我们结合YouTube的标签后发现有些片段被YouTube也打上了“开门”标签，那么显然这一个“开门”动作是与众不同的，值得我们特殊关注。</p>
-<h2 id="3、相关工作"><a href="#3、相关工作" class="headerlink" title="3、相关工作"></a>3、相关工作</h2><p>​        这一部分主要介绍了AVA数据集与其他以往类似的数据集的不同，其中提到的其他数据集我暂时还不了解。总结下来有以下几点不同：1、AVA提供了时空注释而非单纯的空间或时间注释；2、以往的数据集往往动作很少、视频很短，AVA则没有这个问题；3、AVA关注于“原子级”动作而非复杂的复合动作</p>
-<h2 id="4、数据收集"><a href="#4、数据收集" class="headerlink" title="4、数据收集"></a>4、数据收集</h2><p>​        在标注AVA时，有以下五个阶段：生成动作描述词、选择电影片段、标注人物框、链接人物、标注动作。</p>
-<h3 id="4-1-生成动作描述词"><a href="#4-1-生成动作描述词" class="headerlink" title="4.1 生成动作描述词"></a>4.1 生成动作描述词</h3><p>​        这一过程中主要有三项原则：普遍性、原子性、穷尽性。</p>
-<p>​        普遍性：收集日常环境中的一般行为而非特定环境中的特殊行为；</p>
-<p>​        原子性：在保证清晰的特征的同时将动作独立于交互物体，这使得动作表完整且精简；</p>
-<p>​        穷尽性：多轮迭代后，action类别覆盖了绝大多数的AVA数据集</p>
-<h3 id="4-2-选择电影片段"><a href="#4-2-选择电影片段" class="headerlink" title="4.2 选择电影片段"></a>4.2 选择电影片段</h3><p>​        这一过程首先是在YouTube上挑选2000个电影后进一步经过数据清洗，成为了初始的数据。数据集收到的约束被尽量减少，但依旧会有一些动作存在着如性别之类因素的偏见，因此不能100%反映出人类行为。同时，每个片段15min的时长平衡了成本以及多样性。</p>
-<h3 id="4-3-标注人物框"><a href="#4-3-标注人物框" class="headerlink" title="4.3 标注人物框"></a>4.3 标注人物框</h3><p>​        这一过程比较关键的步骤是在外包手动注释之前先用Faster-RCNN对图像进行了预标注，最大程度上减少了人工标注的数量，进而控制成本。</p>
-<h3 id="4-4-链接人物框"><a href="#4-4-链接人物框" class="headerlink" title="4.4 链接人物框"></a>4.4 链接人物框</h3><p>​        这一步骤将人物框在较短周期内连接为了一个运动轨迹，我认为目的是分析上下文信息。</p>
-<h3 id="4-5-动作标注"><a href="#4-5-动作标注" class="headerlink" title="4.5 动作标注"></a>4.5 动作标注</h3><p>​        这一部分主要是为了减小人工标注的错误率同时提高效率进而提出的一种”分级标注“的方式，即注释者可以根据提示一步步完成对动作的标注，使得标注过程中有更加清晰的思路，显著减小了错误率。具体的标注过程如下图：<img src="C:\Users\dodo\AppData\Roaming\Typora\typora-user-images\image-20210124230347778.png" alt="image-20210124230347778" style="zoom:33%;" /></p>
-<h2 id="5、AVA数据集的特征"><a href="#5、AVA数据集的特征" class="headerlink" title="5、AVA数据集的特征"></a>5、AVA数据集的特征</h2><h3 id="5-1-动作的多样性"><a href="#5-1-动作的多样性" class="headerlink" title="5.1 动作的多样性"></a>5.1 动作的多样性</h3><p>​        有几点特别值得注意：有许多动作之间存在着相当细微的差别，例如”碰杯“与”喝酒“；同时动作会随着时间推移发生细微变化，这给数据集建立带来了一定难度。</p>
-<h3 id="5-2-标注分析"><a href="#5-2-标注分析" class="headerlink" title="5.2 标注分析"></a>5.2 标注分析</h3><p>​        这一部分与我们前几天做的数据集分析工作非常类似。他们也统计了不同动作标注的数量等信息。数量分布上如下图所示：</p>
-<img src="C:\Users\dodo\AppData\Roaming\Typora\typora-user-images\image-20210124231116095.png" alt="image-20210124231116095" style="zoom:33%;" />
-
-<p>其中可以看到明显的”长尾现象“，与我们前几天分析出的情况很相似。文章中对这种分布有更严格的定义——其大致服从Zipf’s law。</p>
-<h3 id="5-3-时间结构"><a href="#5-3-时间结构" class="headerlink" title="5.3 时间结构"></a>5.3 时间结构</h3><p>​        时间结构是AVA数据集的重要特征，研究者通过连接人物的一个个小动作可以分析出动作在时间维度上具备的特征，他们甚至发现了一些动作存在着有趣的普遍性：例如”看电话-&gt;接电话“这样的序列是十分常见的特征。同时他们也分析了在一个时间段内不同人物之间的动作经过整合所具备的特征：例如”乘车“与”开车“常常成对出现。我认为这是AVA数据集加入时空分析后得出的虽然显然但十分有趣的结论。</p>
+<h2 id="一、问题引入"><a href="#一、问题引入" class="headerlink" title="一、问题引入"></a>一、问题引入</h2><p>​        笔者决定对这一现象做进一步的探讨。询问有过物理竞赛经历的大佬后得知，这一问题的探讨较为复杂，且涉及到一些课堂上没有提及的知识，故参考了玻恩的《光学原理》，从书中的一步步推导逐渐了解到了泊松亮斑的本质。</p>
+<h2 id="二、理论基础"><a href="#二、理论基础" class="headerlink" title="二、理论基础"></a>二、理论基础</h2><h3 id="2-1-基尔霍夫积分定理"><a href="#2-1-基尔霍夫积分定理" class="headerlink" title="2.1 基尔霍夫积分定理"></a>2.1 基尔霍夫积分定理</h3><p>​    课上介绍过惠更斯-菲涅耳理论，即$P$点的光扰动是由此点和光源间的某个面上所发出的各个次级波叠加而成的。基尔霍夫定理则为这一定理给出了更为完善、更为严谨的数学推导。</p>
+<p>​    简要推导过程如下：</p>
+<p>​    首先考虑一个严格单色的标量波：$V(x,y,z,t)=U(x,y,z)e^{-i\omega t}$在真空中，与空间有关部分$U$满足与时间无关的波动方程$({\nabla}^2+k^2)U=0$,其中$k={\omega}/c$，也被称作$Helmholtz$方程。</p>
+<p>​    设$v$为闭合面$S$所包围的体积，$P$是$S$内任一点。假定$U$在$S$内和$S$上具有连续一阶、二阶偏微商。若$U’$为任一其他函数，和$U$</p>
+<p>满足相同条件，则有$Green$定理，有：</p>
+<p>​                                                        ${\int\int\int}_v(U\nabla^2U’-U’\nabla^2U)dv=-{\int\int_S}(U\frac {\partial U’}{\partial n}-U’\frac {\partial U}{\partial n})dS$</p>
+<p>特别地，如果$U’$也满足与时间无关的波动方程，即为：$({\nabla}^2+k^2)U’=0$，$Green$定理左式为零，因此${\int\int_S}(U\frac {\partial U’}{\partial n}-U’\frac {\partial U}{\partial n})dS=0$</p>
+<p>​    进一步运算可得：</p>
+<p>​                                                                    $U(P)=\frac 1{4\pi}\int\int_S[U\frac \partial{\partial n}(\frac {e^{iks}}s)-\frac {e^{iks}}s\frac {\partial U}{\partial N}]dS$</p>
+<p>这便是亥姆霍兹-基尔霍夫积分定理</p>
+<h3 id="2-2-巴比涅原理"><a href="#2-2-巴比涅原理" class="headerlink" title="2.2 巴比涅原理"></a>2.2 巴比涅原理</h3><p>​    利用基尔霍夫定理并作近似后，可以得到菲涅耳-基尔霍夫衍射公式（设$A$为开孔）：</p>
+<p>​                                                                $U(P)=-\frac {iA}{2\lambda}\int\int_A \frac {e^{ik(r+s)}}{rs}[cos(n,r)-cos(n,s)]dS$</p>
+<p>注意到，这一公式中对于源和观测点是对称的，这意味着$P_0$点点源在$P$点产生的效果，和$P$点同等强度的点源在$P_0$点所产生的效果相同。这一定理被称为$Helmholtz$互易定理。</p>
+<p>​    进而可以立即得出有关互补屏衍射光分布情况的结论。互补屏指的是这样两个屏，其中一个的开孔部分正好对应另一个的不透明部分，反之亦然。设$U_1(P)$和$U_2(P)$分别代表第一个屏和第二个屏单独放在光源和观察点$P$之间时的复位移，并设$U(P)$为没有屏时的值。由于$U_1(P)$和$U_2(P)$可以表示为对开孔部分的积分，而这两个屏开孔部分加起来正好是整个平面，因而：$U_1+U_2=U$</p>
+<p>​    这一结果称为巴比涅原理</p>
+<h2 id="三、结论推导"><a href="#三、结论推导" class="headerlink" title="三、结论推导"></a>三、结论推导</h2><h3 id="3-1-圆孔夫琅禾费衍射"><a href="#3-1-圆孔夫琅禾费衍射" class="headerlink" title="3.1 圆孔夫琅禾费衍射"></a>3.1 圆孔夫琅禾费衍射</h3><p>​    设$(\rho,\theta)$为孔上某点的极坐标，并设$(\omega,\psi)$为衍射图样上一点源几何像为原点时$P$点的极坐标，$a$为圆孔半径</p>
+<p>则由衍射积分式可知:</p>
+<p>​                                                                                 $U(P)=C\int_0^a\int_0^{2\pi}e^{-ik\rho \omega cos(\theta - \psi)}\rho d\rho d\theta$</p>
+<p>​                                                                                            $=CD[\frac {2J_1(ka\omega)}{ka\omega}]$（其中$J_n(x)$为贝塞尔函数）</p>
+<h3 id="3-2-“泊松亮斑”成因"><a href="#3-2-“泊松亮斑”成因" class="headerlink" title="3.2 “泊松亮斑”成因"></a>3.2 “泊松亮斑”成因</h3><p>​    上式给出了圆孔的夫琅禾费衍射的各点的复振幅，根据巴比涅原理，圆盘衍射的复振幅应为：$U_盘=U-U_孔$</p>
+<p>​    又因为各点的光强为复振幅模的平方，可推得在圆盘衍射的中心会存在一个亮度极高、面积极小的“泊松亮斑”</p>
+<h2 id="四、参考资料"><a href="#四、参考资料" class="headerlink" title="四、参考资料"></a>四、参考资料</h2><p>1、《大学物理教程》 吴曦珑 主编</p>
+<p>2、《光学原理》 [德] 马科斯·玻恩 著</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -182,10 +183,9 @@
             <div class="post-nav">
                 <hr>
                 
-                    <div class="post-nav-item">Previous Post:<a href="/2021/02/12/%E5%85%B3%E4%BA%8E%E2%80%9C%E6%B3%8A%E6%9D%BE%E4%BA%AE%E6%96%91%E2%80%9D%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A8%E8%AE%BA/" rel="prev" 
-                        title="">
-                      </a></div>
                 
+                    <div class="post-nav-item">Next Post:<a href="/2021/02/12/Report%20-%20AVA/" rel="next" 
+                        title=""></a></div>
                                 
             </div>   
                         
@@ -232,7 +232,7 @@
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Report-AVA"><span class="toc-number">1.</span> <span class="toc-text">Report - AVA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">1、概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%BC%95%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">2、引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E2%80%9C%E5%8E%9F%E5%AD%90%E7%BA%A7%E2%80%9D%E5%8A%A8%E4%BD%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 “原子级”动作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%89%E6%8B%A9%E7%94%B5%E5%BD%B1%E6%9D%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 为什么要选择电影来获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%A9%B7%E5%B0%BD%E6%89%80%E6%9C%89%E5%8A%A8%E4%BD%9C%E7%9A%84%E6%A0%87%E6%B3%A8%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%8E%E6%9E%9C"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 穷尽所有动作的标注带来的后果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">3、相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86"><span class="toc-number">1.4.</span> <span class="toc-text">4、数据收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%94%9F%E6%88%90%E5%8A%A8%E4%BD%9C%E6%8F%8F%E8%BF%B0%E8%AF%8D"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 生成动作描述词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%80%89%E6%8B%A9%E7%94%B5%E5%BD%B1%E7%89%87%E6%AE%B5"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 选择电影片段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%A0%87%E6%B3%A8%E4%BA%BA%E7%89%A9%E6%A1%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 标注人物框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E9%93%BE%E6%8E%A5%E4%BA%BA%E7%89%A9%E6%A1%86"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 链接人物框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%8A%A8%E4%BD%9C%E6%A0%87%E6%B3%A8"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 动作标注</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81AVA%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.5.</span> <span class="toc-text">5、AVA数据集的特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%8A%A8%E4%BD%9C%E7%9A%84%E5%A4%9A%E6%A0%B7%E6%80%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 动作的多样性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%A0%87%E6%B3%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 标注分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E6%97%B6%E9%97%B4%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 时间结构</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E2%80%9C%E6%B3%8A%E6%9D%BE%E4%BA%AE%E6%96%91%E2%80%9D%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">关于“泊松亮斑”问题的一些讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="toc-number">1.1.</span> <span class="toc-text">一、问题引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">二、理论基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%9F%BA%E5%B0%94%E9%9C%8D%E5%A4%AB%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 基尔霍夫积分定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%B7%B4%E6%AF%94%E6%B6%85%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 巴比涅原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BB%93%E8%AE%BA%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.3.</span> <span class="toc-text">三、结论推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9C%86%E5%AD%94%E5%A4%AB%E7%90%85%E7%A6%BE%E8%B4%B9%E8%A1%8D%E5%B0%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 圆孔夫琅禾费衍射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E2%80%9C%E6%B3%8A%E6%9D%BE%E4%BA%AE%E6%96%91%E2%80%9D%E6%88%90%E5%9B%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 “泊松亮斑”成因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text">四、参考资料</span></a></li></ol></li></ol>
                 </div>
             </div>
             
