@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Report - AVA窦铱明 2021&#x2F;1&#x2F;24  1、概要​        这篇文章介绍了AVA（Atomic Visual Actions ）数据集的诞生过程，它是一个关注在视频中人物的基础动作的数据集，主要具备以下特征：① 关注细化的基础动作而非复杂的复合动作；② 对每一任务都有时空标注；③ 穷尽了15min内人物的所有动作；④ 从电影中获得丰富的动作集合。 2、引言​        将视">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/02/12/Report%20-%20AVA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Report - AVA窦铱明 2021&#x2F;1&#x2F;24  1、概要​        这篇文章介绍了AVA（Atomic Visual Actions ）数据集的诞生过程，它是一个关注在视频中人物的基础动作的数据集，主要具备以下特征：① 关注细化的基础动作而非复杂的复合动作；② 对每一任务都有时空标注；③ 穷尽了15min内人物的所有动作；④ 从电影中获得丰富的动作集合。 2、引言​        将视">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/dodo/AppData/Roaming/Typora/typora-user-images/image-20210124230347778.png">
+<meta property="og:image" content="c:/Users/dodo/AppData/Roaming/Typora/typora-user-images/image-20210124231116095.png">
+<meta property="article:published_time" content="2021-02-12T09:30:16.300Z">
+<meta property="article:modified_time" content="2021-01-24T15:21:59.447Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/dodo/AppData/Roaming/Typora/typora-user-images/image-20210124230347778.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Report - AVA" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/12/Report%20-%20AVA/" class="article-date">
+  <time class="dt-published" datetime="2021-02-12T09:30:16.300Z" itemprop="datePublished">2021-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Report-AVA"><a href="#Report-AVA" class="headerlink" title="Report - AVA"></a><center>Report - AVA</center></h1><center>窦铱明 2021/1/24</center>
+
+<h2 id="1、概要"><a href="#1、概要" class="headerlink" title="1、概要"></a>1、概要</h2><p>​        这篇文章介绍了AVA（Atomic Visual Actions ）数据集的诞生过程，它是一个关注在视频中人物的基础动作的数据集，主要具备以下特征：① 关注细化的基础动作而非复杂的复合动作；② 对每一任务都有时空标注；③ 穷尽了15min内人物的所有动作；④ 从电影中获得丰富的动作集合。</p>
+<h2 id="2、引言"><a href="#2、引言" class="headerlink" title="2、引言"></a>2、引言</h2><p>​        将视频以1Hz采样后对于每一帧的动作分为了姿态、与物体交互、与人交互三种类别。同时以关键帧为中心±1.5s的部分提供了上下文信息（比如开门和关门动作在静态时看起来一样，但如果加入上下文信息就可以区分）。</p>
+<h3 id="2-1-“原子级”动作"><a href="#2-1-“原子级”动作" class="headerlink" title="2.1 “原子级”动作"></a>2.1 “原子级”动作</h3><p>​        通过两个美国人在观察自己生活的小镇后的研究得知，人体的动作行为是分级的（从最上级的intention到最末端的movement）因此我们很难定义verb的分类表。不过如果我们将考察范围缩小到一定的时间范围，那么动作就变得相对容易考察，于是采用了引言中的采样方式。</p>
+<h3 id="2-2-为什么要选择电影来获取数据"><a href="#2-2-为什么要选择电影来获取数据" class="headerlink" title="2.2 为什么要选择电影来获取数据"></a>2.2 为什么要选择电影来获取数据</h3><p>​        本质上，我们希望获取到的人类行为数据是最真实的（”in the wild”），但我们并没有这种能力来获得大量的真实数据。由顶级演员表演的电影在一定程度上代表了日程生活中人类的丰富行为。</p>
+<h3 id="2-3-穷尽所有动作的标注带来的后果"><a href="#2-3-穷尽所有动作的标注带来的后果" class="headerlink" title="2.3 穷尽所有动作的标注带来的后果"></a>2.3 穷尽所有动作的标注带来的后果</h3><p>​        人类的动作发生的频率是有很大差异的，比如“站立”动作时常发生而“亲吻”动作显然较少发生，因此在标注数据集时如果不加筛选地标注所有action会产生类似80-20法则的“长尾效应”，即大量的数据集标签集中在少部分的action，而少部分的数据却被标注为许多不同的action，造成了数据集的不平均分布。（这个现象在前几天筛选不同action出现数量的时候我深有体会）</p>
+<p>​        但是这并不意味着标注出了问题，事实上“长尾”数据是我们建立数据集时的关键，它们代表了大量的、难以分辨的动作。</p>
+<p>​        同时，集中了大量数据的少部分常见action事实上也有着特殊作用。比如电影情节中，“开门”是时常发生的动作，因此被大量标注。而如果我们结合YouTube的标签后发现有些片段被YouTube也打上了“开门”标签，那么显然这一个“开门”动作是与众不同的，值得我们特殊关注。</p>
+<h2 id="3、相关工作"><a href="#3、相关工作" class="headerlink" title="3、相关工作"></a>3、相关工作</h2><p>​        这一部分主要介绍了AVA数据集与其他以往类似的数据集的不同，其中提到的其他数据集我暂时还不了解。总结下来有以下几点不同：1、AVA提供了时空注释而非单纯的空间或时间注释；2、以往的数据集往往动作很少、视频很短，AVA则没有这个问题；3、AVA关注于“原子级”动作而非复杂的复合动作</p>
+<h2 id="4、数据收集"><a href="#4、数据收集" class="headerlink" title="4、数据收集"></a>4、数据收集</h2><p>​        在标注AVA时，有以下五个阶段：生成动作描述词、选择电影片段、标注人物框、链接人物、标注动作。</p>
+<h3 id="4-1-生成动作描述词"><a href="#4-1-生成动作描述词" class="headerlink" title="4.1 生成动作描述词"></a>4.1 生成动作描述词</h3><p>​        这一过程中主要有三项原则：普遍性、原子性、穷尽性。</p>
+<p>​        普遍性：收集日常环境中的一般行为而非特定环境中的特殊行为；</p>
+<p>​        原子性：在保证清晰的特征的同时将动作独立于交互物体，这使得动作表完整且精简；</p>
+<p>​        穷尽性：多轮迭代后，action类别覆盖了绝大多数的AVA数据集</p>
+<h3 id="4-2-选择电影片段"><a href="#4-2-选择电影片段" class="headerlink" title="4.2 选择电影片段"></a>4.2 选择电影片段</h3><p>​        这一过程首先是在YouTube上挑选2000个电影后进一步经过数据清洗，成为了初始的数据。数据集收到的约束被尽量减少，但依旧会有一些动作存在着如性别之类因素的偏见，因此不能100%反映出人类行为。同时，每个片段15min的时长平衡了成本以及多样性。</p>
+<h3 id="4-3-标注人物框"><a href="#4-3-标注人物框" class="headerlink" title="4.3 标注人物框"></a>4.3 标注人物框</h3><p>​        这一过程比较关键的步骤是在外包手动注释之前先用Faster-RCNN对图像进行了预标注，最大程度上减少了人工标注的数量，进而控制成本。</p>
+<h3 id="4-4-链接人物框"><a href="#4-4-链接人物框" class="headerlink" title="4.4 链接人物框"></a>4.4 链接人物框</h3><p>​        这一步骤将人物框在较短周期内连接为了一个运动轨迹，我认为目的是分析上下文信息。</p>
+<h3 id="4-5-动作标注"><a href="#4-5-动作标注" class="headerlink" title="4.5 动作标注"></a>4.5 动作标注</h3><p>​        这一部分主要是为了减小人工标注的错误率同时提高效率进而提出的一种”分级标注“的方式，即注释者可以根据提示一步步完成对动作的标注，使得标注过程中有更加清晰的思路，显著减小了错误率。具体的标注过程如下图：<img src="C:\Users\dodo\AppData\Roaming\Typora\typora-user-images\image-20210124230347778.png" alt="image-20210124230347778" style="zoom:33%;" /></p>
+<h2 id="5、AVA数据集的特征"><a href="#5、AVA数据集的特征" class="headerlink" title="5、AVA数据集的特征"></a>5、AVA数据集的特征</h2><h3 id="5-1-动作的多样性"><a href="#5-1-动作的多样性" class="headerlink" title="5.1 动作的多样性"></a>5.1 动作的多样性</h3><p>​        有几点特别值得注意：有许多动作之间存在着相当细微的差别，例如”碰杯“与”喝酒“；同时动作会随着时间推移发生细微变化，这给数据集建立带来了一定难度。</p>
+<h3 id="5-2-标注分析"><a href="#5-2-标注分析" class="headerlink" title="5.2 标注分析"></a>5.2 标注分析</h3><p>​        这一部分与我们前几天做的数据集分析工作非常类似。他们也统计了不同动作标注的数量等信息。数量分布上如下图所示：</p>
+<img src="C:\Users\dodo\AppData\Roaming\Typora\typora-user-images\image-20210124231116095.png" alt="image-20210124231116095" style="zoom:33%;" />
+
+<p>其中可以看到明显的”长尾现象“，与我们前几天分析出的情况很相似。文章中对这种分布有更严格的定义——其大致服从Zipf’s law。</p>
+<h3 id="5-3-时间结构"><a href="#5-3-时间结构" class="headerlink" title="5.3 时间结构"></a>5.3 时间结构</h3><p>​        时间结构是AVA数据集的重要特征，研究者通过连接人物的一个个小动作可以分析出动作在时间维度上具备的特征，他们甚至发现了一些动作存在着有趣的普遍性：例如”看电话-&gt;接电话“这样的序列是十分常见的特征。同时他们也分析了在一个时间段内不同人物之间的动作经过整合所具备的特征：例如”乘车“与”开车“常常成对出现。我认为这是AVA数据集加入时空分析后得出的虽然显然但十分有趣的结论。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/12/Report%20-%20AVA/" data-id="ckl23bg510000tsvqhr4ke5om" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Report%20-%20AVA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
